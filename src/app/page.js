@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const [videoSrc, setVideoSrc] = useState(null);
   const [isLoading, setIsLoading] = useState(true); // State for loading
+  const [videoError, setVideoError] = useState(false); // State for video error
 
   const updateVideoSource = () => {
     const hour = new Date().getHours();
@@ -35,6 +36,11 @@ export default function Home() {
     setIsLoading(false);
   };
 
+  // Handle video error (fallback to image)
+  const handleVideoError = () => {
+    setVideoError(true);
+  };
+
   return (
     <div style={{ position: "relative", overflow: "hidden", minHeight: "100vh" }}>
       {/* Loader */}
@@ -53,18 +59,20 @@ export default function Home() {
             zIndex: 10,
           }}
         >
-          <div className="loader"></div> {/* Replace with your preferred loader */}
+          <div className="loader"></div>{" "}
+          {/* Replace with your preferred loader */}
         </div>
       )}
 
-      {/* Render video only if videoSrc is set */}
-      {videoSrc && (
+      {/* Render video or image if videoSrc is set */}
+      {videoSrc && !videoError && (
         <video
           autoPlay
           loop
           muted
           playsInline
           onCanPlayThrough={handleVideoLoad} // Trigger when video is ready
+          onError={handleVideoError} // Fallback in case of error
           style={{
             position: "fixed",
             top: 0,
@@ -80,13 +88,29 @@ export default function Home() {
         </video>
       )}
 
+      {/* Fallback image if video fails */}
+      {videoError && (
+        <img
+          src={`/backgrounds/${videoSrc?.split("/").pop()?.replace(".mp4", ".jpg")}`}
+          alt="Background"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: -1,
+          }}
+        />
+      )}
+
       {/* Main Content */}
       {!isLoading && (
         <main className="p-6 flex flex-col items-center justify-center text-white min-h-screen">
-          <h2 className="text-3xl font-semibold mb-6 translate-y-5 text-gray-900 dark:text-gray-100 bg-white bg-opacity-0 dark:bg-black dark:bg-opacity-30 backdrop-blur-lg p-6 rounded-xl shadow-lg">
-  Welcome to the RPi Server Dashboard
-</h2>
-
+          <h2 className="text-3xl font-semibold mb-6 translate-y-5 text-gray-900 dark:text-gray-100 bg-white bg-opacity-0 dark:bg-black dark:bg-opacity-30 backdrop-blur-lg p-6 rounded-3xl shadow-lg">
+            Welcome to the RPi Server Dashboard
+          </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 translate-y-5">
             <ThreeDCard
