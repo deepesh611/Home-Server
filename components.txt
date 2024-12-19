@@ -1,0 +1,3 @@
+floating dock
+Cards
+signup form & sidebar
