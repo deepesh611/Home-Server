@@ -5,6 +5,7 @@ const nextConfig = {
         'assets.aceternity.com',
         'www.element-it.com',
         'www.casaos.io',
+        'images4.alphacoders.com',
       ], 
     },
   };

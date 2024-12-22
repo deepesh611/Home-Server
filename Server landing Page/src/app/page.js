@@ -1,12 +1,12 @@
 "use client";
 
-import { ThreeDCard } from "@/components/cards";
+import { ThreeDCard } from "../components/cards";
 import { useState, useEffect } from "react";
 
 export default function Home() {
   const [videoSrc, setVideoSrc] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // State for loading
-  const [videoError, setVideoError] = useState(false); // State for video error
+  const [isLoading, setIsLoading] = useState(true);
+  const [videoError, setVideoError] = useState(false);
 
   const updateVideoSource = () => {
     const hour = new Date().getHours();
@@ -14,7 +14,7 @@ export default function Home() {
       setVideoSrc("/videos/morning.mp4");
     } else if (hour >= 12 && hour < 18) {
       setVideoSrc("/videos/afternoon.mp4");
-    } else if (hour >= 18 && hour < 21) {
+    } else if (hour >= 18 && hour < 22) {
       setVideoSrc("/videos/evening.mp4");
     } else {
       setVideoSrc("/videos/night.mp4");
@@ -60,7 +60,6 @@ export default function Home() {
           }}
         >
           <div className="loader"></div>{" "}
-          {/* Replace with your preferred loader */}
         </div>
       )}
 
@@ -112,13 +111,13 @@ export default function Home() {
             Welcome to the RPi Server Dashboard
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 translate-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 translate-y-5">
             <ThreeDCard
               title="Main Dashboard"
               description="Go to the main server dashboard - CasaOS"
               imageSrc="https://www.casaos.io/images/casaos_dee1f011.jpg"
               imageAlt="casaos"
-              link="http://rpi.local"
+              link="http://rpi.local:6060"
             />
             <ThreeDCard
               title="File Server"
@@ -126,6 +125,13 @@ export default function Home() {
               imageSrc="https://www.element-it.com/images/screenshots/httpcommander/webp/3.webp"
               imageAlt="filebrowser"
               link="http://rpi.local:7070"
+            />
+            <ThreeDCard
+              title="Media Server"
+              description="Watch or Stream Movies & TV Shows from your Server"
+              imageSrc="https://images4.alphacoders.com/134/thumb-1920-1348032.png"
+              imageAlt="jellyfin"
+              link="http://rpi.local:8096"
             />
           </div>
         </main>
