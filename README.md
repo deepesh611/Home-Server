@@ -34,8 +34,8 @@ Learn to:
 - Flash Raspberry Pi OS.
 - Assign a static IP address.
 - Set up SSH for remote access.  
-  
-    [👉 Go to Guide](./1%20-%20Setting%20Up%20Server/README.md)
+
+[👉 Go to Guide](./1%20-%20Setting%20Up%20Server/README.md)
 
 ### 2. Creating a Server Landing Page
 Host a custom landing page to showcase your services or provide easy navigation to your server's tools.   
