@@ -1,0 +1,5 @@
+.env
+venv
+trial
+.idea
+.vscode
