@@ -36,7 +36,7 @@ This guide will walk you through setting up your home server with **CasaOS**, **
 
 5. Install Basic Tools:
    ```bash
-   sudo apt install nala -y              # APT alternative with better readability
+   sudo apt install nala -y              # APT's coverup with better readability
 
    sudo nala install openssh-server -y  # Install SSH server (if not preinstalled)
    sudo systemctl start ssh             # Start the SSH service
