@@ -33,6 +33,9 @@ Welcome to the **Home Server Dashboard**, a central landing page for managing an
 1. Your Server
 
 ### Steps
-1. Clone this repository to your Raspberry Pi:
+1. Clone this repository to your Raspberry Pi if not done already:
    ```bash
+    git clone https://github.com/deepesh611/Home-Server.git
     ```
+
+2. 
