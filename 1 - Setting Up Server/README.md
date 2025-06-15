@@ -14,6 +14,10 @@ This guide will walk you through setting up your home server with **CasaOS**, **
 
 ## 1. Raspberry Pi Setup 🛠️
 
+>NOTE:<br>
+> Those who wish to work on a PC/Laptop can skip the Raspberry Pi Setup.
+> <br>
+
 ### Steps to Follow:
 
 1. **Download Raspberry Pi Imager**:  

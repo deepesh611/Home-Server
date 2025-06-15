@@ -40,7 +40,7 @@ Learn to:
 ### 2. Creating a Server Landing Page
 Host a custom landing page to showcase your services or provide easy navigation to your server's tools.   
 
-[👉 Go to Guide](./2%20-%20Server%20Landing%20Page/README.md)
+[👉 Go to Guide](2%20-%20Server%20Landing%20Page/Custom%20Page/README.md)
 
 ### 3. Installing and Configuring CasaOS
 Install and configure CasaOS to simplify managing your server with an elegant UI.
