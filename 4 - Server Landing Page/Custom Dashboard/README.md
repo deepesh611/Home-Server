@@ -1,41 +1,88 @@
-# Custom Home Server Dashboard 🌐
+# 🌐 Custom Home Server Dashboard
 
-Welcome to the **Home Server Dashboard**, a custom central landing page for managing and accessing your home server. This page shows how to set a custom dashboard using `your own code` and `nginx server`.
+Welcome to the **Home Server Dashboard**, a central landing page for managing and accessing services running on your Raspberry Pi home server. This guide walks you through setting up your own custom dashboard using your code and an `nginx` server.
 
-## Features 🚀
+---
 
-- **Main Dashboard**  
-  Quickly navigate to the `CasaOS` main server dashboard for overall system management.
+## 🚀 Features
 
-- **File Server**  
-  Access, upload, and manage your files effortlessly.
+- **Custom Landing Page**  
+  Navigate to services like file managers, media servers, or utilities hosted on your Pi.
 
-- **Media Server**  
-  Stream movies, TV shows, and music from your server with ease.
+- **File Server Access**  
+  Easily manage files stored on connected storage devices.
 
-- **Live Wallpapers**  
-  Implemented live wallpapers based on the time.
+- **Media Streaming**  
+  Link to streaming tools like Jellyfin or Plex hosted locally.
 
-## Preview 🎨
+- **Dynamic Wallpapers**  
+  Live wallpapers that change based on the time of day.
 
-[RPi Server Dashboard Preview](https://github.com/deepesh611/Home-Server/blob/f5c55afbe888d1c23dea7e34e774355a7ee41c0c/2%20-%20Server%20Landing%20Page/Sample%20Landing%20Page/public/assets/LandingPage.png)
+---
 
-## Technologies Used 🛠️
+## 🎨 Preview
+
+![RPi Server Dashboard Preview](Sample%20Landing%20Page/public/assets/LandingPage.png)
+
+---
+
+## 🛠️ Technologies Used
 
 - **Frontend**: [Next.js](https://nextjs.org/)
-- **Components**: [Aceternity UI](https://ui.aceternity.com/)
-- **Hosting Tool**: [Nginx](https://nginx.org/en/)
-- **Backend Storage**: Raspberry Pi with external `Micro SD`/`SSD`/`HDD`
+- **UI Components**: [Aceternity UI](https://ui.aceternity.com/)
+- **Hosting**: [Nginx](https://nginx.org/en/)
+- **Hardware**: Raspberry Pi with external MicroSD, SSD, or HDD
 
-## Installation Guide 📦
+---
 
-### Prerequisites
-1. Your Server
+## 📦 Installation Guide
 
-### Steps
-1. Clone this repository to your Raspberry Pi if not done already:
+### ✅ Prerequisites
+
+- A Raspberry Pi running a Debian-based OS
+- Git, Node.js (for Next.js), and Nginx installed
+
+---
+
+### 🔧 Steps
+
+1. **Clone the Repository**
+
    ```bash
-    git clone https://github.com/deepesh611/Home-Server.git
+   git clone https://github.com/deepesh611/Home-Server.git
+   cd Home-Server/2\ -\ Server\ Landing\ Page/Sample\ Landing\ Page
+   ```
+2. Install Dependencies
+    ```bash
+    npm install
     ```
+3. Build the Static Files
+   ```bash
+    npm run build
+    npm run export
+    ```
+   The static site will be available in the out/ directory.
+4. Set Up Nginx
+   - Move the out/ folder to your web root:
+   ```bash
+   sudo cp -r out/* /var/www/html/
+    ```
+   - Restart Nginx:
+   ```bash
+   sudo systemctl restart nginx
+    ```
+   
+## ✅ Final Result
 
-2. 
+You should now be able to access your custom home dashboard by visiting your Pi’s IP address in a browser:
+
+```bash
+http://localhost
+# or 
+http://<rpi-IP>
+```
+
+## 📁 Customize
+- To add or remove links, modify the components in your Next.js project.
+- Update the wallpaper logic for more dynamic effects using useEffect() and time-based hooks.
+- Style it further using Tailwind or any custom CSS.
