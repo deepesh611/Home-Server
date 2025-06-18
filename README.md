@@ -47,7 +47,7 @@ Host a custom landing page to showcase your services or provide easy navigation 
 ### 5. Nginx Proxy Manager (NPM)
 Setup NPM for Proxy server setup, SSL, etc.
 
-[👉 Go to Guide](./5%20Nginx%20Proxy%20Manager/README.md)
+[👉 Go to Guide](./5%20-%20Nginx%20Proxy%20Manager/README.md)
 
 ---
 
