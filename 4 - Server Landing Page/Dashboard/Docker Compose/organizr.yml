@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  organizr:
+    image: organizr/organizr
+    container_name: organizr
+    ports:
+      - "8040:8040"
+    volumes:
+      - ./organizr/config:/config
+    restart: unless-stopped

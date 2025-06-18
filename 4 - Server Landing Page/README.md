@@ -77,3 +77,4 @@ sudo systemctl restart nginx
 - Set the dashboard as your browser homepage.
 - Use HTTPS with Certbot for security.
 - Combine with a reverse proxy (like Traefik or Nginx Proxy Manager) for clean URLs.
+

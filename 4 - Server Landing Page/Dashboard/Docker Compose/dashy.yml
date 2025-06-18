@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  dashy:
+    image: lissy93/dashy
+    container_name: dashy
+    ports:
+      - "8080:8080"                                   # Host-Port:Container-Port
+    volumes:
+      - ./dashy/conf.yml:/app/public/conf.yml
+    restart: unless-stopped

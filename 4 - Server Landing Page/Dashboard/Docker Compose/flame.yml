@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  flame:
+    image: pawelmalak/flame
+    container_name: flame
+    volumes:
+      - ./flame:/app/data
+    ports:
+      - "5005:5005"
+    environment:
+      - PASSWORD=your_password_here           # optional
+    restart: unless-stopped

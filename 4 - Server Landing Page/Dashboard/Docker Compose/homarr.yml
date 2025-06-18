@@ -1,0 +1,18 @@
+#---------------------------------------------------------------------#
+#     Homarr - A simple, yet powerful dashboard for your server.      #
+#---------------------------------------------------------------------#
+
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/homarr-labs/homarr:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock   # Optional, only if you want docker integration
+      - ./homarr/appdata:/appdata                   # Map your disk with the right path
+      - ./homarr/icons:/app/public/icons            # Map your disk with the right path
+    environment:
+      - SECRET_ENCRYPTION_KEY=1389de43f7ee258d396ad812b939783d9f7619064d9ce804f2e606e9b0f8e0ef
+    ports:
+      - '7575:7575'                                   # Map you port (Host-Port:Container-Port)
+                                                    # Port '80' is the default localhost port i.e., http://localhost/
