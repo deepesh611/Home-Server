@@ -32,22 +32,22 @@ Learn to:
 ### 2. Docker Installation and Setup
 Docker is a tool that helps developers build, share, run, and verify applications using containers. This section will help you setup docker on your server.  
 
-[👉 Go to Guide](2%20-%20Docker%20Setup/README.md)
+[👉 Go to Guide](./2%20-%20Docker%20Setup/README.md)
 
 ### 3. Portainer Setup on Docker
 Portainer is a universal platform that lets you manage Docker, Kubernetes, Swarm and Podman clusters anywhere. It offers secure access, authorization, customization and support for your containerized applications and devices. This section will help you setup your portainer using docker.
 
-[👉 Go to Guide](3%20-%20Portainer%20Setup/README.md)
+[👉 Go to Guide](./3%20-%20Portainer%20Setup/README.md)
 
 ### 4. Creating a Server Landing Page
 Host a custom landing page to showcase your services or provide easy navigation to your server's tools.   
 
-[👉 Go to Guide](4%20-%20Server%20Landing%20Page/Custom%20Dashboard/README.md)
+[👉 Go to Guide](./4%20-%20Server%20Landing%20Page/Custom%20Dashboard/README.md)
 
 ### 5. Nginx Proxy Manager (NPM)
 Setup NPM for Proxy server setup, SSL, etc.
 
-[👉 Go to Guide](5%20Nginx%20Proxy%20Manager/README.md)
+[👉 Go to Guide](./5%20Nginx%20Proxy%20Manager/README.md)
 
 ---
 
