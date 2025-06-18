@@ -9,8 +9,6 @@ Welcome to the **Home Server** repository! This guide will walk you through sett
 - 📡 **Static IP Configuration**: Keep your server accessible with a fixed IP address.  
 - 🌐 **Domain Name Setup**: Assign a custom local domain name for ease of access.  
 - 🏠 **Landing Page**: Host a personalized landing page for your server.  
-- 🚀 **CasaOS**: Manage your server with an intuitive dashboard.  
-- 🔧 **Cockpit Setup**: Monitor and manage your server efficiently.  
 - 📂 **External Storage**: Add and configure external HDDs/SSDs for additional storage.  
 
 ---
@@ -19,11 +17,7 @@ Welcome to the **Home Server** repository! This guide will walk you through sett
 
 This repository is structured into multiple folders, each covering a specific aspect of the server setup. Follow these steps:
 
-1. Clone the repository to your local machine:
-   ```bash
-   git clone https://github.com/deepesh611/Home-Server.git
-    ```
-2. Navigate to the relevant folder for detailed instructions.
+1. Navigate to the relevant folder for detailed instructions.
 
 ---
 
@@ -37,15 +31,22 @@ Learn to:
 
 [👉 Go to Guide](./1%20-%20Setting%20Up%20Server/README.md)
 
-### 2. Creating a Server Landing Page
+### 2. Docker Installation and Setup
+Docker is a tool that helps developers build, share, run, and verify applications using containers. This section will help you setup docker on your server.  
+
+[👉 Go to Guide](2%20-%20Docker%20Setup/README.md)
+
+### 3. Portainer Setup on Docker
+Portainer is a universal platform that lets you manage Docker, Kubernetes, Swarm and Podman clusters anywhere. It offers secure access, authorization, customization and support for your containerized applications and devices. This section will help you setup your portainer using docker.
+
+[👉 Go to Guide](3%20-%20Portainer%20Setup/README.md)
+
+### 4. Creating a Server Landing Page
 Host a custom landing page to showcase your services or provide easy navigation to your server's tools.   
 
-[👉 Go to Guide](2%20-%20Server%20Landing%20Page/Custom%20Page/README.md)
+[👉 Go to Guide](4%20-%20Server%20Landing%20Page/Custom%20Dashboard/README.md)
 
-### 3. Installing and Configuring CasaOS
-Install and configure CasaOS to simplify managing your server with an elegant UI.
 
-[👉 Go to Guide](./3%20-%20CasaOS%20Setup/README.md)
 
 ---
 
