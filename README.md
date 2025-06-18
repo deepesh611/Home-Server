@@ -15,9 +15,7 @@ Welcome to the **Home Server** repository! This guide will walk you through sett
 
 ## How to Use This Repository? 🤔
 
-This repository is structured into multiple folders, each covering a specific aspect of the server setup. Follow these steps:
-
-1. Navigate to the relevant folder for detailed instructions.
+This repository is structured into multiple folders, each covering a specific aspect of the server setup. Follow these steps. Navigate to the relevant folder for detailed instructions.
 
 ---
 
@@ -46,7 +44,10 @@ Host a custom landing page to showcase your services or provide easy navigation 
 
 [👉 Go to Guide](4%20-%20Server%20Landing%20Page/Custom%20Dashboard/README.md)
 
+### 5. Nginx Proxy Manager (NPM)
+Setup NPM for Proxy server setup, SSL, etc.
 
+[👉 Go to Guide](5%20Nginx%20Proxy%20Manager/README.md)
 
 ---
 
