@@ -5,8 +5,8 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"                           # Public HTTP
-      - "443:443"                         # Public HTTPS
       - "81:81"                           # Admin UI
+      - "443:443"                         # Public HTTPS
     volumes:
       - D:\docker\nginx\data:/data
       - D:\docker\nginx\etc\letsencrypt:/etc/letsencrypt

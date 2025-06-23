@@ -57,19 +57,18 @@ Tabs-based portal to unify self-hosted apps, ideal for power users.
    - Make the necessary Changes such as port, vol. path, etc
    - Deploy the stack.
     
+<br>
 
 >**💡 NOTE:**<br>
-> If you have the dashboard to open when you enter `http://<server-ip>`, then edit the docker-compose and set the `Host-Port` to 80.<br>
+> If you have the dashboard to open when you enter your server ip without entering the port, i.e `http://<server-ip>`, then edit the docker-compose and set the `Host-Port` to 80.<br>
 > eg. `Host-Port:Container-Port` = `80:7575` for Homarr
->
+
+<br>
 4. Open your browser at:
     ```bash
     http://<your-server-ip>:<dashboard-port>
     ```
 Replace `<dashboard-port>` with the port specified in the compose file, such as `7575`, `8080`, etc.
 
-## 🔒 Optional Enhancements:
 
-- Use Nginx Proxy Manager or Traefik for pretty URLs like `http://dashboard.local`
-- Set up HTTPS with Let's Encrypt for secure access
-- Add authentication if exposed beyond your local network
+

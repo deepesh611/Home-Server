@@ -16,7 +16,7 @@ Open in your browser:
     ```bash
    http://<server-ip>:81
     ```
->**Default Credentials:**<br>
+>**🔐 Default Credentials:**<br>
 > Email: `admin@example.com`<br>
 >Password: `changeme`
 
