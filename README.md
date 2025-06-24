@@ -60,7 +60,7 @@ Setup NPM for Proxy server setup, SSL, etc.
 
 ---
 
-## Contributions 🤝
+## Contributing 🤝
 Feel free to contribute to this repository!
 
 - Fork the repo.
