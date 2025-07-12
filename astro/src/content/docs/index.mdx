@@ -1,0 +1,131 @@
+---
+title: Welcome to Your Home Server Guide
+description: Build your own home server step by step, no basement racks required.
+template: splash
+hero:
+  tagline: "If it serves something — it’s a server...."
+  image:
+    file: https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3lsaWplYWs0cDdwYzRhN3M0Mngzc2ZraTBkbHc1cTdpcHZxbnBkZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jN9S0faVsUUfdaY50J/giphy.gif
+  actions:
+    - text:  Get Started
+      link: /guides/server-setup/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/deepesh611/Home-Server
+      icon: github
+      variant: minimal
+next: false
+---
+
+
+import { Aside } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+
+
+## Why this guide?
+
+> Confession time: I used to think you needed loud racks, blinking lights, and a basement full of servers to run your own “home server.” I was wrong. 😅
+
+Turns out, almost **any device** can be a server.
+- That old laptop you’ve buried in your closet?
+- A Raspberry Pi? Even that dusty mini PC? `you know, the one your mom left behind after “that visit” 👀`
+- Or that old desktop you forgot you owned? `Yeah, the one your sibling swore they’d fix but never did.`
+
+    <Aside>
+        If it serves something — it’s a server...
+    </Aside>
+
+    I was shocked when I first discovered this. So I decided to document everything I learned (mistakes and all) in one place, so you don’t have to repeat my confusion.
+
+    ---
+
+    ## What you’ll learn
+
+    <CardGrid stagger>
+        <Card title="Prep your hardware" icon="laptop">
+            Flash an OS, set up static IPs, and get SSH working so you can manage your server in pajamas.
+        </Card>
+        <Card title="Secure remote access" icon="approve-check-circle">
+            Use Twingate (or similar) to connect safely from anywhere — no scary port forwarding needed.
+        </Card>
+        <Card title="Deploy apps with Docker" icon="seti:docker">
+            Run apps in neat, isolated containers without cluttering your system.
+        </Card>
+        <Card title="Manage with Portainer" icon="pencil">
+            Control all your containers using a clean web UI — no terminal wizardry needed.
+        </Card>
+        <Card title="Build a landing page" icon="rocket">
+            Showcase your services in one pretty dashboard, so you stop typing IPs like it’s 1999.
+        </Card>
+        <Card title="Add extra magic" icon="starlight">
+            Proxy domains, add SSL, and attach extra storage — make your setup truly yours.
+        </Card>
+    </CardGrid>
+
+    ---
+
+    ## 💬 Why am I doing this?
+
+    Because I was once in your shoes — thinking I needed expensive gear and endless technical knowledge.
+    I was wrong, and I wish someone had handed me a single, simple guide.
+
+    So here it is.
+
+    <Aside type="caution">
+        You might find yourself telling people you “run a server” just to sound cool.<br/>
+        `No judgment here, happens to all of us`.<br/><br/>
+        ![i have it](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDM0eGcwdWFhaXlxOGtna2RqNHhhaWFibXRxOTFxcjg0eDMyNnVkbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cl3MpSrLBh2x0OMOHA/giphy.gif)
+    </Aside>
+    ---
+
+    ## ⭐ Final Words of Wisdom....
+
+    Here are the steps to succeed
+    <Steps>
+        1. **Start small**
+
+            How about opening the side panel of that PC for the first time?<br/>
+            `It’s not a bomb, promise. Just some dust bunnies plotting world domination inside. 🐰💥`
+
+        2. **Break things**
+
+            `Better not forget. This is the most important step.`
+
+        3. **Learn**
+
+            Because after you break stuff, you'll definitely need to learn how to fix it. 😅🔧<br/>
+            `That damn thing ain't fixing on its own, y'know.`
+    </Steps>
+
+    #####  🖥️ Your first "server" >> Might just become the coolest project you've ever typed `sudo` for....
+
+    <Aside>
+        For those who don't know what `sudo` is, here's a well known illustration...
+        <img src="https://i.redd.it/udh8vnga3op21.jpg" width="300"/>
+
+        **If you are one of those who don't understand it, well....**
+        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGg4dXdzaTZpcWc3eWUxcWc3eGdobzQzcWNvYWFuamdicHR1NWdubyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0zBRRRTbIAXmoEPKgc/giphy.gif" width='300' />
+        . <br/>
+        . <br/>
+        . <br/>
+        . <br/>
+        . <br/>
+
+        Okay okay, just kidding. 😜
+
+        `sudo` basically means "superuser do" — it lets you run commands with elevated privileges on Linux, just like **"Run as administrator"** on Windows. <br/>
+        `This comparison with windows is just for understanding purpose. Trust me guys, sudo is capable of much more that just Run as Administrator`. <br/>
+
+
+        And if you don’t know what *Run as administrator* is... well...<br/>
+        🧐 Maybe it’s time to consider a nice hobby like gardening? 🪴😂
+
+
+    </Aside>
+
+    ---
+
+    ### 💖 Happy hosting! 🚀
+

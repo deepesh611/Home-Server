@@ -1,0 +1,29 @@
+{
+  "name": "astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/starlight": "^0.34.5",
+    "@astrojs/starlight-tailwind": "^4.0.1",
+    "@astrojs/vue": "^5.1.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "astro": "^5.11.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sharp": "^0.34.2",
+    "starlight-scroll-to-top": "^0.1.1",
+    "styled-components": "^6.1.19",
+    "tailwindcss": "^4.1.11",
+    "vue": "^3.5.17"
+  }
+}
