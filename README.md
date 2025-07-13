@@ -52,7 +52,7 @@ We start with flashing an OS, assigning a static IP, and setting up SSH so you c
 Using Twingate to reach your server safely — no risky open ports needed.  
 `Remember that nightmare story about open ports? Yeah, let’s avoid that.`
 
-[👉 Check it out](./2%20-%20Remote%20Access%20to%20Server/README.md)
+[👉 Check it out](2%20-%20Remote%20Access%20to%20Server/Twingate/README.md)
 
 ---
 

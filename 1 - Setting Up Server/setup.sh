@@ -30,7 +30,7 @@ print_message "info" "Step 1: Updating package lists..."
 if sudo apt update; then
     print_message "success" "Package lists updated successfully."
 else
-    print_message "error" "Failed to update package lists. Exiting."
+    print_message "error" "Failed to update package lists. Exiting..."
     exit 1
 fi
 echo

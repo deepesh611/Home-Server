@@ -8,5 +8,5 @@ services:
     ports:
       - "5005:5005"
     environment:
-      - PASSWORD=your_password_here           # optional
+      - PASSWORD=<YOUR-PASSWORD-HERE>         # optional
     restart: unless-stopped

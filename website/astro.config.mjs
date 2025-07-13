@@ -30,7 +30,7 @@ export default defineConfig({
               collapsed: true,
               items: [
                   // Each item here is one entry in the navigation menu.
-                  { label: 'Example Guide', slug: 'guides/server-setup' },
+                  { label: 'View on Github', slug: 'guides/repo-struct' },
               ],
           },
           {
