@@ -24,6 +24,7 @@ export default defineConfig({
               link: 'https://deepesh-patil.vercel.app/',
               attrs: { target: '_blank'},
           },
+
           {
               label: 'Getting Started',
               collapsed: true,
