@@ -22,9 +22,10 @@ export default defineConfig({
           {
               label: 'About me',
               link: 'https://deepesh-patil.vercel.app/',
+              attrs: { target: '_blank'},
           },
           {
-              label: 'Guides',
+              label: 'Getting Started',
               collapsed: true,
               items: [
                   // Each item here is one entry in the navigation menu.
