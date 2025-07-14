@@ -1,0 +1,181 @@
+---
+title: 🧭 Nginx Proxy Manager (NPM)
+description: Manage your self-hosted services like a boss — no more port typing madness.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Code } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+
+Nginx Proxy Manager (NPM) is that friend who handles all your awkward "Who do I talk to?" situations — but for your servers.
+
+It gives you a beautiful UI, free SSL via Let’s Encrypt, and makes you feel like an absolute wizard, even if you're just clicking around and hoping it works. 🧙‍♂️✨
+
+---
+
+## 🛠 Setup Instructions
+
+<Aside type="tip">
+    💡Deploy your Nginx Proxy Manager container using **Portainer** for maximum clicky-click convenience.
+
+    <Steps>
+        1. Open Portainer and log in (try to remember that strong password you set 👀).
+        2. Select your **Local** environment.
+        3. Navigate to **Stacks** (think of it as your container playlist 🎵).
+        4. Click **Add Stack**.
+        5. Give your stack a cool name (e.g., `nginx-proxy-army`).
+        6. Paste your `yml` configuration directly, or upload your `.yml` file if you like feeling fancy.
+        7. Click **Deploy the stack**, sit back, and watch the magic happen. ✨
+    </Steps>
+</Aside>
+
+
+<Steps>
+
+    1. Create Docker Network
+
+        <Code code="docker network create nginx" lang="bash" />
+
+        Because your containers deserve their own exclusive VIP lounge. 💃
+
+
+    2. Docker Compose File
+
+        Use a Docker Compose file for easier management.
+        Check out 👉 [`nginx.yml`](reference/ymls).
+
+    3. Start the Container
+
+        <Code code="docker compose -f nginx-proxy-manager-compose.yml up -d" lang="bash" />
+
+        Give it a moment to spin up. Grab some coffee, or stare blankly at your terminal wondering if you did something wrong.
+
+    4. Access the Dashboard
+
+        Fire up your browser and visit:
+
+        ```bash
+        http://<server-ip>:81
+        ```
+
+        > **🔐 Default Credentials:**
+        > Email: `admin@example.com`
+        > Password: `changeme`
+        >
+        > Like that one friend who never changes their Netflix password. Change it immediately!
+
+</Steps>
+
+---
+
+## 🌐 Use Case 1: Point Root IP to Homarr
+
+You want `http://192.168.1.100/` to show your Homarr dashboard (running on port 7575).
+
+<Steps>
+    1. Go to **Proxy Hosts** > **Add Proxy Host**.
+    2. Domain Names: Leave empty (or your IP if needed).
+    3. Forward Hostname/IP: `localhost`.
+    4. Forward Port: `7575`.
+    5. Block Common Exploits: ✅.
+    6. Websockets Support: ✅.
+    7. Save it. Boom.
+</Steps>
+
+Now, visiting your server IP takes you straight to Homarr, no more `:7575` tag of shame.
+
+---
+
+## 🌍 Use Case 2: Subdomain for Dashy
+
+Want `http://dashboard.server.com` to show Dashy (port 8080)?
+
+<Steps>
+    1. Go to **Proxy Hosts** > **Add Proxy Host**.
+    2. Domain Names: `dashboard.yourdomain.com`.
+    3. Forward Hostname/IP: `localhost`.
+    4. Forward Port: `8080`.
+    5. Enable SSL:
+        - Go to the SSL tab.
+        - Check **Force SSL**.
+        - Request Let’s Encrypt certificate.
+    6. Save and flex.
+</Steps>
+
+<Aside type="tip">
+    - Make sure your subdomain points to your public IP in DNS (e.g., via Cloudflare).
+    - Use Dynamic DNS (DDNS) if your IP changes more often than your mood.
+    - You can create as many subdomains as you want and brag to your friends like a true homelab lord.
+</Aside>
+
+## 🧑‍💻 Use Case 3: My personal setup
+
+I use NPM to forward different requests to different internal services like a strict but fair bouncer at a nightclub. 🍸🚪
+
+### ➕ How mine is set up
+
+- When I open `http://localhost`, it forwards me to my **Homarr dashboard** running on port `7575`. This is like my home control center — everything at my fingertips!
+
+- When I access `http://server.duckdns.org`, it forwards to port `5678`, which is where my **n8n** instance lives.
+
+---
+
+### 🌀 Wait… What’s n8n?
+
+> **n8n** (pronounced "n-eight-n") is an automation tool, kind of like a self-hosted Zapier.
+> It lets you build workflows to connect different services, automate boring tasks, and play God with your data.
+
+---
+
+### 🔑 What's that OAuth consent screen about?
+
+When you want to connect your home server to Google APIs (for example, to automate Google Sheets, Gmail, or Calendar), Google needs to verify that you are... well... **you** (and not a robot bent on world domination 🤖).
+
+- The **OAuth consent screen** is a web page where you log in to your Google account and authorize your server (n8n) to access certain data or perform actions on your behalf.
+- Without this screen, your server can’t securely interact with Google services.
+
+---
+
+### 🌍 Why do I need `server.duckdns.org`?
+
+- Your home IP address might change (thanks, ISP 🙄).
+- **DuckDNS** gives you a free dynamic DNS (DDNS) domain that always points to your current home IP, even if it changes.
+- This makes it possible to access your server remotely (or show Google a stable domain for the OAuth flow).
+
+---
+
+### 💬 TL;DR
+
+- **Homarr**: Cool dashboard at `http://localhost`.
+- **n8n**: Automation wizard at `http://server.duckdns.org`, with OAuth wizardry for Google.
+- **DuckDNS**: Keeps your server address stable so you don’t lose your sanity.
+
+---
+
+<Aside type="caution">
+    Never expose n8n or any sensitive service to the public internet **without protection** (like NPM, authentication, and strong firewalls). Or you might end up starring in someone’s hacking YouTube video. 💀
+</Aside>
+
+---
+
+## ✅ Summary Table
+
+| Address                       | Target Service    | Example Port |
+|-------------------------------| ----------------- | ------------ |
+| `http://<server-ip>/`         | Homarr Dashboard  | 7575         |
+| `http://dashboard.server.com` | Dashy Dashboard   | 8080         |
+| `http://media.server.com`     | Jellyfin          | 8096         |
+| `http://files.server.com`     | Filebrowser       | 8081         |
+
+---
+
+## 💬 Final Thoughts
+
+> "Expose yourself safely."
+> — Nginx Proxy Manager, probably.
+
+With NPM, no more typing ports like `:3000`, no more internal fights with your firewall, and no more "Wait, which service was on 8081 again?"
+
+---
+
+🎉 **Happy proxying!** 🛰️

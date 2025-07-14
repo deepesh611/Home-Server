@@ -50,6 +50,13 @@ export default defineConfig({
               ]
           },
           {
+              label: 'Network Stuff',
+              collapsed: true,
+              items: [
+                  { label: 'Nginx', slug: 'guides/network/nginx'},
+              ]
+          },
+          {
               label: 'Reference',
               collapsed: true,
               autogenerate: { directory: 'reference' },

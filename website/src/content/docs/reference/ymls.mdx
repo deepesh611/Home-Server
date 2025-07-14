@@ -1,0 +1,421 @@
+---
+title: YML Configs of Docker Containers
+---
+
+import { Code } from '@astrojs/starlight/components';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+## 🕸️ Network
+
+<Tabs>
+    <TabItem label="Nginx Proxy Manager">
+        <Code code={`services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: npm
+    restart: unless-stopped
+    ports:
+      - "80:80"                           # Public HTTP
+      - "81:81"                           # Admin UI
+      - "443:443"                         # Public HTTPS
+    volumes:
+      - C:\\docker\\nginx\\data:/data
+      - C:\\docker\\nginx\\etc\\letsencrypt:/etc/letsencrypt
+    networks:
+      - nginx
+
+        networks:
+          nginx:
+            external: true
+`} lang="yml" />
+    </TabItem>
+</Tabs>
+
+---
+
+## 🖥️ Dashboard
+
+<Tabs>
+    <TabItem label="Homarr">
+        <Code code={`services:
+    homarr:
+    container_name: homarr
+    image: ghcr.io/homarr-labs/homarr:latest
+    restart: unless-stopped
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock   # Optional, only if you want docker integration
+        - ./homarr/appdata:/appdata                   # Map your disk with the right path
+        - ./homarr/icons:/app/public/icons            # Map your disk with the right path
+    environment:
+        - SECRET_ENCRYPTION_KEY=<YOUR_SECRET_KEY>
+    ports:
+        - '7575:7575'                                   # Map you port (Host-Port:Container-Port)
+                                                            # Port '80' is the default localhost port i.e., http://localhost/
+
+`} lang="yml" />
+    </TabItem>
+
+    <TabItem label="Dashy">
+        <Code code={`version: "3.8"
+services:
+  dashy:
+    image: lissy93/dashy
+    container_name: dashy
+    ports:
+      - "8080:8080"                                   # Host-Port:Container-Port
+    volumes:
+      - ./dashy/conf.yml:/app/public/conf.yml
+    restart: unless-stopped
+
+`} lang="yml" />
+    </TabItem>
+
+    <TabItem label="Flame">
+        <Code code={`version: "3.8"
+services:
+  flame:
+    image: pawelmalak/flame
+    container_name: flame
+    volumes:
+      - ./flame:/app/data
+    ports:
+      - "5005:5005"
+    environment:
+      - PASSWORD=<YOUR-PASSWORD-HERE>
+    restart: unless-stopped
+`} lang="yml" />
+    </TabItem>
+
+    <TabItem label="Heimdall">
+        <Code code={`version: "3.8"
+services:
+  heimdall:
+    image: lscr.io/linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ./heimdall/config:/config
+    ports:
+      - "8020:8020"
+    restart: unless-stopped
+`} lang="yml" />
+    </TabItem>
+
+    <TabItem label="Organizr">
+        <Code code={`version: "3.8"
+services:
+  organizr:
+    image: organizr/organizr
+    container_name: organizr
+    ports:
+      - "8040:8040"
+    volumes:
+      - ./organizr/config:/config
+    restart: unless-stopped
+`} lang="yml" />
+    </TabItem>
+</Tabs>
+
+---
+
+## ⚙️ System Stats
+
+<Tabs>
+    <TabItem label="Dashdot">
+        <Code code={`version: '3.5'
+services:
+    dash:
+    image: mauricenino/dashdot:latest
+    restart: unless-stopped
+    privileged: true
+    ports:
+       - '81:3001'
+    volumes:
+       - /:/mnt/host:ro
+`} lang="yml" />
+    </TabItem>
+</Tabs>
+
+---
+
+## 🎬 Media Streaming
+
+<Tabs>
+    <TabItem label="Jellyfin">
+        <Code code={`version: "3.8"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    restart: unless-stopped
+    ports:
+      - 8096:8096
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - ./media:/media
+`} lang="yml" />
+    </TabItem>
+
+    <TabItem label="Plex">
+        <Code code={`---
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VERSION=docker
+    ports:
+      - "32400:32400"       # Plex Web UI
+      - "3005:3005"         # Plex Companion
+    volumes:
+      - C:\\docker\\plex\\config:/config
+      - C:\\Movies & Series\\Series:/media/series
+      - C:\\Movies & Series\\Movies:/media/movies
+      - C:\\Music:/media/music
+    restart: unless-stopped
+`} lang="yml" />
+    </TabItem>
+</Tabs>
+
+---
+
+## 🤖 AI & Automation
+<Tabs>
+    <TabItem label="n8n">
+        <Code code={`version: "3.8"
+    services:
+      n8n:
+        image: n8nio/n8n
+        container_name: n8n
+        restart: unless-stopped
+        ports:
+          - 5678:5678
+        environment:
+          - N8N_BASIC_AUTH_ACTIVE=true
+          - N8N_BASIC_AUTH_USER=admin
+          - N8N_BASIC_AUTH_PASSWORD=yourpassword
+        volumes:
+          - ./n8n_data:/home/node/.n8n
+    `} lang="yml" />
+    </TabItem>
+
+    <TabItem label=" n8n (self-hosted-ai-starter-kit)">
+        **Make sure that you follow the steps given <a href="https://github.com/n8n-io/self-hosted-ai-starter-kit/tree/main" target="_blank">here</a> to install this**
+        <Code code={`volumes:
+  n8n_storage:
+  postgres_storage:
+  ollama_storage:
+  qdrant_storage:
+
+        networks:
+          demo:
+
+        x-n8n: &service-n8n
+          image: n8nio/n8n:latest
+          networks: ['demo']
+          environment:
+            - DB_TYPE=postgresdb
+            - DB_POSTGRESDB_HOST=postgres
+            - DB_POSTGRESDB_USER=\${POSTGRES_USER}
+    - DB_POSTGRESDB_PASSWORD=\${POSTGRES_PASSWORD}
+    - N8N_DIAGNOSTICS_ENABLED=false
+    - N8N_PERSONALIZATION_ENABLED=false
+    - N8N_ENCRYPTION_KEY
+    - N8N_USER_MANAGEMENT_JWT_SECRET
+    - OLLAMA_HOST=\${OLLAMA_HOST:-ollama:11434}
+  env_file:
+    - path: .env
+      required: true
+
+        x-ollama: &service-ollama
+          image: ollama/ollama:latest
+          container_name: ollama
+          networks: ['demo']
+          restart: unless-stopped
+          ports:
+            - 11434:11434
+          volumes:
+            - ollama_storage:/root/.ollama
+
+        x-init-ollama: &init-ollama
+          image: ollama/ollama:latest
+          networks: ['demo']
+          container_name: ollama-pull-llama
+          volumes:
+            - ollama_storage:/root/.ollama
+          entrypoint: /bin/sh
+          environment:
+            - OLLAMA_HOST=ollama:11434
+          command:
+            - "-c"
+            - "sleep 3; ollama pull llama3.2"
+
+        services:
+          postgres:
+            image: postgres:16-alpine
+            hostname: postgres
+            networks: ['demo']
+            restart: unless-stopped
+            environment:
+              - POSTGRES_USER
+              - POSTGRES_PASSWORD
+              - POSTGRES_DB
+            volumes:
+              - postgres_storage:/var/lib/postgresql/data
+            healthcheck:
+              test: ['CMD-SHELL', 'pg_isready -h localhost -U \${POSTGRES_USER} -d \${POSTGRES_DB}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+          n8n-import:
+            <<: *service-n8n
+            hostname: n8n-import
+            container_name: n8n-import
+            entrypoint: /bin/sh
+            command:
+              - "-c"
+              - "n8n import:credentials --separate --input=/demo-data/credentials && n8n import:workflow --separate --input=/demo-data/workflows"
+            volumes:
+              - ./n8n/demo-data:/demo-data
+            depends_on:
+              postgres:
+                condition: service_healthy
+
+          n8n:
+            <<: *service-n8n
+            hostname: n8n
+            container_name: n8n
+            restart: unless-stopped
+            ports:
+              - 5678:5678
+            volumes:
+              - n8n_storage:/home/node/.n8n
+              - ./n8n/demo-data:/demo-data
+              - ./shared:/data/shared
+            depends_on:
+              postgres:
+                condition: service_healthy
+              n8n-import:
+                condition: service_completed_successfully
+
+          qdrant:
+            image: qdrant/qdrant
+            hostname: qdrant
+            container_name: qdrant
+            networks: ['demo']
+            restart: unless-stopped
+            ports:
+              - 6333:6333
+            volumes:
+              - qdrant_storage:/qdrant/storage
+
+          ollama-cpu:
+            profiles: ["cpu"]
+            <<: *service-ollama
+
+          ollama-gpu:
+            profiles: ["gpu-nvidia"]
+            <<: *service-ollama
+            deploy:
+              resources:
+                reservations:
+                  devices:
+                    - driver: nvidia
+                      count: 1
+                      capabilities: [gpu]
+
+          ollama-gpu-amd:
+            profiles: ["gpu-amd"]
+            <<: *service-ollama
+            image: ollama/ollama:rocm
+            devices:
+              - "/dev/kfd"
+              - "/dev/dri"
+
+          ollama-pull-llama-cpu:
+            profiles: ["cpu"]
+            <<: *init-ollama
+            depends_on:
+              - ollama-cpu
+
+          ollama-pull-llama-gpu:
+            profiles: ["gpu-nvidia"]
+            <<: *init-ollama
+            depends_on:
+              - ollama-gpu
+
+          ollama-pull-llama-gpu-amd:
+            profiles: [gpu-amd]
+            <<: *init-ollama
+            image: ollama/ollama:rocm
+            depends_on:
+             - ollama-gpu-amd
+`} lang="yml" />
+    </TabItem>
+
+    <TabItem label="Ollama OpenWebUI">
+        <Code code={`version: '3.8'
+        services:
+          openwebui:
+            image: ghcr.io/open-webui/open-webui:main
+            container_name: openwebui
+            ports:
+              - "3000:3000"
+            environment:
+              - OLLAMA_API_BASE_URL=http://host.docker.internal:11434
+            volumes:
+              - openwebui_data:/app/backend/data
+            restart: unless-stopped
+
+        volumes:
+          openwebui_data:
+`} lang="yml" />
+    </TabItem>
+</Tabs>
+
+---
+
+## 🧰 Other Services
+
+<Tabs>
+    <TabItem label="Filebrowser">
+        <Code code={`version: "3.8"
+services:
+  filebrowser:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    volumes:
+      - ./srv:/srv
+      - ./database:/database
+      - ./config:/config
+`} lang="yml" />
+    </TabItem>
+
+    <TabItem label="Vaultwarden">
+        <Code code={`version: "3"
+services:
+    vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    ports:
+        - "9000:80"                                 # Expose Vaultwarden on host-port 9000
+    volumes:
+        - C:\\docker\\vaultwarden\\data:/data          # Persist data on host
+    environment:
+        - ADMIN_TOKEN=YourSecretPassword            # password for your admin panel
+        - WEBSOCKET_ENABLED=true                    # Enable websockets for live updates
+`} lang="yml" />
+    </TabItem>
+</Tabs>
