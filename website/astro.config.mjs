@@ -57,6 +57,14 @@ export default defineConfig({
               ]
           },
           {
+              label: 'Landing Page',
+              collapsed: true,
+              items: [
+                  { label: 'Pre-Made Dashboard', slug: 'guides/landing-page/pre-made' },
+                  { label: 'Custom Dashboard', slug: 'guides/landing-page/custom'},
+              ]
+          },
+          {
               label: 'Reference',
               collapsed: true,
               autogenerate: { directory: 'reference' },

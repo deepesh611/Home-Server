@@ -1,0 +1,106 @@
+---
+title: 🖥️ Pre-made Dashboards
+description: Quickly deploy beautiful dashboards for your home server and pretend you're a professional sysadmin. 🤓
+---
+
+import { Code } from '@astrojs/starlight/components';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Aside } from '@astrojs/starlight/components';
+import { Steps } from "@astrojs/starlight/components";
+
+## 🚨 Why dashboards?
+
+So your server doesn’t look like a haunted house of random IP addresses and ports you keep scribbled on sticky notes.
+
+Dashboards let you **see all your services at a glance**, link to them easily, and flex on your friends when they ask why your browser tab has a sci-fi looking homepage. 😎
+
+You can view all the docker-compose files [here](/reference/ymls)
+
+---
+
+## 🔥 Featured Dashboards
+
+### 1️⃣ [Homarr](https://github.com/ajnart/homarr)
+
+A beautiful, widget-based dashboard that lets you throw all your apps in one cozy room.
+Comes with service linking, widgets, and authentication — like a Swiss army knife, but prettier.
+
+---
+
+### 2️⃣ [Dashy](https://github.com/Lissy93/dashy)
+
+For those who want **total control**, like a cat knocking things off a shelf just because they can.
+Super customizable, tons of integrations, and a big community to share your "look what I made" screenshots with.
+
+---
+
+### 3️⃣ [Heimdall](https://github.com/linuxserver/Heimdall)
+
+Simple, elegant, and reliable.
+No nonsense, no extra fluff — just pure, minimalist service listing.
+
+---
+
+### 4️⃣ [Flame](https://github.com/pawelmalak/flame)
+
+Minimalist vibes only.
+Dark mode, bookmarks, basic authentication — and super lightweight.
+Perfect for those who believe "less is more" (and want to actually see their wallpaper again).
+
+---
+
+### 5️⃣ [Organizr](https://github.com/causefx/Organizr)
+
+Tabs, tabs everywhere.
+A power-user dream: unify all your self-hosted apps under one sleek roof.<br/>
+*May cause you to spend 3 hours tweaking tabs instead of actually doing work. 😅*
+
+---
+
+## 🚀 Quick Start
+
+<Aside type="note">
+    If you like clicking buttons more than typing scary terminal commands, you can deploy these using <b>Portainer</b> too!
+    We won’t tell anyone. 🤫
+</Aside>
+
+### 💣 Steps to blast off
+
+<Steps>
+    1. Pick your favorite dashboard (or all of them if you’re a digital hoarder).
+
+    2. Copy its Docker Compose file to your server.
+
+    3. Run this in the same directory:
+        ```bash
+        docker compose -f <chosen-dashboard>.yml up -
+        ```
+</Steps>
+
+<br/> **OR**<br/> Deploy using [Portainer](https://www.portainer.io):
+
+<Steps>
+    1. Open Portainer in your browser (`http://<server-ip>:9000`).
+    2. Go to **Local > Stacks > Add Stack**.
+    3. Paste the contents of the compose file you chose.
+    4. Adjust ports, volumes, and other settings if needed (don’t be that person who ignores all settings and cries later).
+    5. Smash that Deploy button.
+</Steps>
+
+
+<Aside type="tip">
+    If you want your dashboard to open automatically when you type just <code>http://&lt;server-ip&gt;</code> (no weird port numbers), set your <b>Host-Port</b> to 80 in the Docker Compose file.<br/> For example: <code>80:7575</code> for Homarr.
+</Aside>
+
+4️⃣ Open your browser and go to:
+```bash
+http://(your-server-ip):(dashboard-port)
+```
+Replace (dashboard-port) with the port from your Compose file — like 7575, 8080, etc.
+
+---
+
+## 🎉 Final Words
+
+Enjoy your shiny new dashboards!
+Now you can stop explaining your services to friends like a conspiracy theorist drawing on a whiteboard. Instead, just send them a screenshot and let them be confused in style. 🚀

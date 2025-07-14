@@ -1,0 +1,110 @@
+---
+title: 🌐 Custom Home Server Dashboard
+description: Build a stunning landing page for your home server using Next.js, Nginx, and a dash of creative flair.
+---
+
+import {Code, Steps} from '@astrojs/starlight/components';
+import { Aside } from '@astrojs/starlight/components';
+
+
+Welcome to the **Home Server Dashboard**, your shiny central landing page for managing and accessing all those cool services running on your home server (bonus points if you call it your “bat cave”). 🦇
+
+---
+
+## 🚀 Features
+
+- **Custom Landing Page**
+  One-click access to all your tools: file managers, media servers, or that suspiciously empty "AI Lab" folder.
+
+- **File Server Access**
+  Manage your hoarded files like a digital dragon.
+
+- **Media Streaming**
+  Easily jump to Jellyfin, Plex, or wherever you watch those "legally obtained" movies.
+
+- **Dynamic Wallpapers**
+  Wallpapers that change based on the time — because who doesn’t love a moody sunset at 3 AM?
+
+---
+
+## 🎨 Preview
+
+<img src="https://raw.githubusercontent.com/deepesh611/Home-Server/refs/heads/main/5%20-%20Server%20Landing%20Page/Custom%20Dashboard/Sample%20Landing%20Page/public/assets/LandingPage.png" />
+
+---
+
+## 🛠️ Technologies Used
+
+- **Frontend**: [Next.js](https://nextjs.org/)
+- **UI Components**: [Aceternity UI](https://ui.aceternity.com/)
+- **Hosting**: [Nginx](https://nginx.org/en/)
+- **Hardware**: Raspberry Pi with microSD, SSD, or that HDD you found in a drawer
+
+---
+
+## 📦 Installation Guide
+
+### ✅ Prerequisites
+
+- A Raspberry Pi (or other Linux box) running a Debian-based OS
+- Git, Node.js (for Next.js), and Nginx installed
+- Some patience and a playlist to vibe with
+
+---
+
+### 🔧 Steps
+<Steps>
+
+    1. **Clone the Repository**
+
+        <Code code="git clone https://github.com/deepesh611/Home-Server.git
+         cd '.\5 - Server Landing Page\Custom Dashboard\Sample Landing Page\'" lang="bash" />
+
+    2. **Install Dependencies**
+
+        <Code code="npm install" lang="bash" />
+
+    3. **Build the Static Files**
+
+        <Code code="npm run build
+        npm run export" lang="bash" />
+
+        The static site will be generated inside the `out/` directory. 🎉
+
+    4. **Set Up Nginx**
+
+        - Move the `out/` files to your web root:
+
+        <Code code="sudo cp -r out/* /var/www/html/" lang="bash" />
+
+        - Restart Nginx:
+
+        <Code code="sudo systemctl restart nginx" lang="bash" />
+
+</Steps>
+---
+
+## ✅ Final Result
+
+You can now show off your dashboard by visiting:
+
+```bash
+http://localhost
+# or
+http://<your-server-ip>
+```
+
+<Aside type="note"> If you see an empty page, don’t panic — double-check your Nginx config and make sure you didn’t accidentally move your cat into `/var/www/html/`. </Aside>
+
+## 📁 Customize
+
+- Add or remove links in your Next.js components.
+- Tweak the wallpaper logic (you can go full hacker mode with day/night cycles or even API-based themes).
+- Style it even further with Tailwind CSS, or sprinkle in some dark magic using custom CSS.
+
+## 💬 Final Thoughts
+
+Congrats — you've basically built your own self-hosted portal to the universe.
+Feel free to brag to your friends, "I don't use Google Drive, I have my own dashboard." 😎
+
+## ⚡ Happy hacking! 🚀
