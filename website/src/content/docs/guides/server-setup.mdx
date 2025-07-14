@@ -1,0 +1,179 @@
+---
+title: Initial Server Setup 🖥️
+description: Start your home server journey with Raspberry Pi or PC, featuring dark humor and sharp tools!
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Code } from '@astrojs/starlight/components';
+
+### Welcome to the dark side of home servers... 🕶️
+
+> They say curiosity killed the cat.<br/>
+> But in our case, it only killed some USB sticks, broke a few OS installs, and maybe destroyed your sanity.<br/>
+> **Welcome aboard!** 😈
+
+This guide will walk you through setting up your home server with the required packages, updating all the existing packages, and additional configurations like setting up a **static IP**.
+
+I'll be using my **Raspberry Pi 5**. If you're using a PC or laptop, feel free to skip the Raspberry Pi Setup section and jump right into the fun parts.
+Just make sure your PC is running **Linux** — preferably **not** Windows (unless you love pain).
+You can try it in a **VM**, go **dual boot**, or go full chaos mode and wipe everything for a fresh Linux install.
+
+> *Go big or go home, right? 💣🐧*
+
+[But why a Raspberry Pi ? Why Linux ? ⤴️](/reference/why-pi)<br/>
+
+---
+
+## Prerequisites 📦
+
+- Raspberry Pi 5 with power supply (or a PC/laptop if you’re feeling rebellious)
+- MicroSD card (32GB or larger)
+- External storage (HDD/SSD) if you want to hoard files like a dragon
+- Keyboard, monitor, and Ethernet/Wi-Fi for initial setup
+
+---
+
+## 1️⃣ Raspberry Pi Setup 🛠️
+
+<Aside type="note">
+    Those using a PC/laptop can skip this part and proceed to the next section.
+</Aside>
+
+### Steps to Follow
+
+<Steps>
+
+    1. **Download Raspberry Pi Imager**
+
+        Get it from [here](https://www.raspberrypi.com/software/).
+        Trust me, using random ISO torrents is a great way to get new "friends" (a.k.a. malware).
+
+    2. **Flash the OS**
+
+        Use the imager to flash **Raspberry Pi OS (64-bit)** onto your microSD card.
+        While flashing, enable **SSH** in advanced settings.
+
+    3. **First Boot**
+
+        - Insert the microSD card, connect to a monitor and keyboard, and power it up.
+        - Follow on-screen setup. Pro tip: use Ethernet — Wi-Fi is like that friend who promises to help but always flakes.
+
+    4. **Update your system**
+
+        ```bash
+        sudo apt update
+        sudo apt upgrade -y
+        ```
+        Watch those packages update. It's like watching paint dry but slightly more satisfying.
+
+    5. **Install basic tools**
+
+        ```bash
+        sudo apt install nala -y              # APT’s glow-up
+        sudo nala install openssh-server -y  # SSH server
+        sudo systemctl start ssh
+        sudo systemctl enable ssh
+        sudo systemctl status ssh
+        ```
+        If SSH fails, take a deep breath. And maybe a shot. Then check logs.
+
+</Steps>
+
+### 🤖 Automated Setup Script
+
+If you want to save time (and avoid copy-pasting commands like a caveman), you can use the provided `setup.sh` script.
+
+```bash
+curl -O https://raw.githubusercontent.com/deepesh611/Home-Server/main/setup.sh
+chmod +x setup.sh
+./setup.sh
+````
+<Aside type="caution">
+    💥 <strong>Important:</strong> Always read scripts before running them. Even if they look friendly, you never know — sometimes they have a dark side. 😈
+</Aside>
+
+What it does
+<Steps>
+    1. Updates your system
+    2. Installs <code>nala</code> if missing
+    3. Installs <code>btop</code> and <code>openssh-server</code>
+    4. Starts and enables SSH
+    5. Logs everything to <code>/var/log/script_install.log</code>
+</Steps>
+
+
+## 2️⃣ Assigning a Static IP 📡
+
+Your server deserves a stable life. Floating IPs are for ghosts.
+
+<Steps>
+    1. **Find your gateway and MAC address**
+        <Tabs>
+            <TabItem label="Linux/macOS">
+                <Code code="ifconfig"/>
+            </TabItem>
+            <TabItem label="Windows">
+                <Code code="ipconfig"/>
+            </TabItem>
+        </Tabs>
+        Note your `default gateway IP` and your server’s `MAC address`.
+
+    2. **Router time**
+        <Steps>
+            1. Log into your router (usually via 192.168.x.1).
+
+            2. Navigate to DHCP or Static IP settings.
+
+            3. Reserve an IP for your server’s MAC address.
+        </Steps>
+
+    3. **Reboot**
+        ```
+        sudo reboot
+        ```
+        Your server now sticks to one IP, like that friend who overstays their welcome.
+
+</Steps>
+
+## 3️⃣ Assigning a Local Domain Name (Optional) 🌐
+
+Make your life easier than typing IP addresses like it's the 90s.
+
+<Steps>
+1. **Router DNS settings**
+
+    Find Static DNS options (mine lives under: Advanced > Applications > Static DNS).
+
+2. **Set domain**
+
+    - E.g., `server.local`
+    - Point it to your static IP.
+
+3. **Test**
+
+    ```bash
+    ping <server-ip>
+    ping <domain-name>
+    ```
+    If this fails, scream into the void — or fix your router settings.
+</Steps>
+
+## 4️⃣ Accessing Your Server 🛢️
+
+Connect from your PC/laptop:
+
+```bash
+ssh <username>@<ip-address-or-domain-name>
+```
+Default username is usually `pi` or `root`.
+
+## 🎭 Conclusion
+
+Congrats, you now have a basic home server setup!<br/>
+Soon you’ll be serving files, running containers, and telling your friends, "Yeah, I run a server at home," while they stare in awe (or concern).<br/><br/>
+Check out the next sections for advanced guides — like adding external storage, deploying apps with Docker, or accidentally bricking your network and questioning your life choices.<br/>
+
+
+

@@ -31,6 +31,7 @@ export default defineConfig({
               items: [
                   // Each item here is one entry in the navigation menu.
                   { label: 'View on Github', slug: 'guides/repo-struct' },
+                  { label: 'Initial Setup', slug: 'guides/server-setup'},
               ],
           },
           {
