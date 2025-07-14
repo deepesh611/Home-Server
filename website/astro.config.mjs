@@ -30,9 +30,24 @@ export default defineConfig({
               collapsed: true,
               items: [
                   // Each item here is one entry in the navigation menu.
-                  { label: 'View on Github', slug: 'guides/repo-struct' },
-                  { label: 'Initial Setup', slug: 'guides/server-setup'},
+                  { label: 'View on Github', slug: 'guides/getting-started/repo-struct' },
+                  { label: 'Initial Setup', slug: 'guides/getting-started/server-setup'},
               ],
+          },
+          {
+              label: 'Access your Server',
+              collapsed: true,
+              items: [
+                  { label: 'Using Twingate', slug: 'guides/access-server/twingate'},
+              ]
+          },
+          {
+              label: 'Manage Containers',
+              collapsed: true,
+              items: [
+                  { label: 'Docker Setup', slug: 'guides/container-management/docker'},
+                  { label: 'Portainer Setup', slug: 'guides/container-management/portainer'},
+              ]
           },
           {
               label: 'Reference',

@@ -1,0 +1,110 @@
+---
+title: 🔐 Access Home Server using Twingate
+description: Set up Twingate to securely access your home server from anywhere — no port forwarding, no tears (well, mostly).
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+
+
+Ever wanted to brag, "Yeah, I can access my server from anywhere," while sipping overpriced coffee in a random café? ☕💻
+Well, **Twingate** lets you do exactly that — securely, and without exposing your precious home server to the scary internet wolves. 🐺
+
+---
+
+## 🌐 What You Need
+
+- A free <a href="https://www.twingate.com" target="_blank">Twingate</a> account
+- Your **home server** (whether it’s a Pi, mini PC, dusty laptop — as long as it runs Linux and hasn't been sacrificed to the `/dev/null` gods yet)
+- (Optional, but cool) A second device on the same LAN to act as the **Twingate Connector**. Think of it as the friend who does the risky stuff so you don’t have to.
+- Your client device (laptop, phone, fridge, smart mirror — if it runs Twingate, you’re good)
+
+---
+
+## 🛠️ Setup Steps
+
+### 1️⃣ Create a Twingate Network
+
+<Steps>
+
+    1. Head over to <a href="https://www.twingate.com" target="_blank">Twingate</a> and create your free account.
+
+    2. In the Admin Console:
+        - Create a **Remote Network** (give it a cool name, like `MyEvilLabLAN`).
+        - Add a **Connector** — choose `Linux`, generate tokens, and copy the magical command they give you.
+
+    3. On your connector device (in our case, it's the server), run that command like you’re casting a forbidden spell.
+
+</Steps>
+
+---
+
+### 2️⃣ Install Twingate Client
+
+Install the Twingate app on your remote device — basically, a "magic door" to your server.
+
+- <a href="https://www.twingate.com/download/" target="_blank">Get it here (Windows / Mac / Linux / iOS / Android)</a>
+
+---
+
+### 3️⃣ Add Your Home Server as a Resource
+
+<Steps>
+
+    1. In the Admin Console:
+        - Go to **Resources**.
+        - Click **Add Resource**.
+        - Name it something intimidating or cute — e.g., `My Doom Server` or `FluffyTheServer`.
+        - Set its LAN address (e.g., `192.168.1.10`). Add a port if needed (e.g., `192.168.1.10:22` for SSH).
+
+    2. Assign it to a group (e.g., `Everyone` if you trust your minions).
+
+</Steps>
+
+---
+
+### 4️⃣ Connect & Access
+
+<Steps>
+
+    1. Fire up the Twingate client on your device.
+
+    2. Sign in and connect to your new network.
+
+    3. You can now reach your home server from anywhere. Yes, even that sketchy Wi-Fi at your local bus station — though maybe don’t do sensitive things there. 🚌💀
+
+</Steps>
+
+---
+
+## 📺 Helpful Video Tutorial
+
+> **<a href="https://youtu.be/IYmXPF3XUwo?si=piE4B6no53dLMFjn" target="_blank">🔗 How to Use Twingate to Access Devices on LAN</a>**
+> <br/>by NetworkChuck — the guy who makes network magic look way too easy.
+
+---
+
+## ✅ Tips
+
+- Your home server can run anything: SSH, web dashboards, Minecraft, your weird Python projects that you never finish...
+- No need to mess with dangerous public IPs or sacrifice your soul to port forwarding.
+- Add more LAN devices as Resources — your NAS, another server, or that old smart fridge that may or may not be plotting against you.
+
+---
+
+## 🔒 Stay Secure!
+
+- Twingate encrypts everything. Even your questionable commit messages.
+- You decide who gets to access what. Absolute power, with slightly fewer consequences than a Marvel villain.
+- Perfect for hobbyists, remote work, or flexing on your friends by SSHing into your home server from a hammock.
+
+---
+
+<Aside type="caution">
+    ⚠️ Remember: Just because you *can* access your server from a beach doesn't mean you should start running updates while sipping piña coladas. 🍹💣
+</Aside>
+
+---
+
+### 🥳 Enjoy your new secure remote powers — and don’t break too many things at once!
+

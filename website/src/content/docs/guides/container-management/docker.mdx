@@ -1,0 +1,74 @@
+---
+title: 🚀 Docker Setup
+description: Learn how to install Docker on your home server with dark humor and no rage quits!
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+import { Code } from '@astrojs/starlight/components';
+
+
+<a href="https://www.docker.com/" target="_blank">Docker</a> is like that friend who shows up at every party, but instead of eating all your snacks, it brings neat little containers of apps to run anywhere. 🎁
+
+---
+
+## 🛠️ Prerequisites
+
+- Internet access (no, your neighbor's Wi-Fi doesn't count)
+- A user with `sudo` privileges (aka, your inner superuser unleashed)
+
+---
+
+## 📦 Install Docker
+
+<Steps>
+
+    1. **Update your packages**
+
+        <Code code="sudo nala update && sudo nala upgrade -y" />
+
+        Because outdated packages are like expired milk. You *could* use them, but you'd regret it.
+
+    2. **Install dependencies**
+
+        <Code code="sudo nala install ca-certificates curl gnupg lsb-release -y" />
+
+    3. **Add Docker’s GPG key**
+
+        <Code code={`sudo mkdir -m 0755 -p /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`} />
+
+    4. **Set up Docker repository**
+
+        <Code code={`echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+        https://download.docker.com/linux/debian \
+        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`} />
+
+    5. **Install Docker Engine**
+
+        <Code code="sudo nala install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y" />
+
+    6. **Enable and start Docker**
+
+        <Code code={`sudo systemctl enable docker
+        sudo systemctl start docker`} />
+
+</Steps>
+
+---
+
+## ✅ Test Docker
+
+Run the classic "Hello World" container to make sure you didn't accidentally summon a digital demon. 👻
+
+<Code code="docker run hello-world" />
+
+If you see **"Hello from Docker!"**, congrats! You now have a mini shipyard running in your server, and you're officially cooler than 99% of people who think containers only exist in shipping yards. ⚓🚢
+
+---
+
+<Aside type="caution">
+    ⚠️ Warning: You may now experience an uncontrollable urge to containerize everything — even your relationship problems. Please containerize responsibly. 💔📦
+</Aside>
+
+---

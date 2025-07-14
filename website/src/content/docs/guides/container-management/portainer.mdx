@@ -1,0 +1,91 @@
+---
+title: 🏗️ Portainer Setup
+description: Manage your Docker containers in style — no more endless CLI typing, unless that's your kink.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Code } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+
+Portainer is like having a fancy touchscreen interface for your containers instead of jabbing around blindly in the CLI.
+If you love clicking shiny buttons instead of typing long commands — Portainer is your new best friend.
+
+🌐 [Portainer Website](https://www.portainer.io/)<br/>
+📄 [Official Docs](https://docs.portainer.io)
+
+<Aside type="caution">
+    If you’re a hardcore CLI purist who thinks GUIs are for "weaklings", feel free to skip this section and keep flexing those terminal muscles. 💪🐧
+</Aside>
+
+---
+
+## 🐳 Requirements
+
+- Docker installed and running on your system.
+- Internet (so you can actually pull images instead of yelling at the screen).
+
+---
+
+## 🚀 Quick Start
+
+### 1️⃣ Pull the Portainer Image
+
+<Code code="docker pull portainer/portainer-ce" lang="bash" />
+
+Because what's Docker without pulling yet another container you'll forget to clean up later? 😈
+
+---
+
+### 2️⃣ Create a Docker Volume (optional but recommended)
+
+<Code code="docker volume create portainer_data" lang="bash" />
+
+This volume saves your Portainer data — like your precious container settings and forgotten stacks — even after you rage quit and restart your server.
+
+---
+
+### 3️⃣ Run Portainer
+
+```bash
+docker run -d
+  -p 8000:8000            # Agent port (for connecting agents — you can ignore if not using)
+  -p 9443:9443             # Web UI (secure access)
+  --name=portainer
+  --restart=always
+  -v /var/run/docker.sock:/var/run/docker.sock
+  -v portainer_data:/data
+  portainer/portainer-ce:latest
+```
+⚠️ If you accidentally typo the ports, don’t worry — you’ll just spend 3 hours figuring out why it "doesn't work".
+
+### 🌐 Accessing Portainer
+
+Once running, open your browser and head to:
+```bash
+https://localhost:9443
+```
+If it doesn’t load, double-check ports, firewall, or whether you accidentally started Minecraft instead.
+
+<Steps>
+    1. The first time you open Portainer, you'll be asked to create an **admin user**. Choose wisely — this is your new kingdom.
+
+    2. Pick Local when asked which environment to manage.
+        This connects directly to your local Docker engine, no complicated rituals needed.
+
+    3. Enjoy your GUI container empire! 👑
+</Steps>
+
+### 🗑️ To Stop and Remove Portainer
+<Code code="docker stop portainer" lang="bash" /> <Code code="docker rm portainer" lang="bash" />
+
+Perfect for when you want to "start fresh" after totally messing up your stack for the tenth time. 💀
+
+### 💬 Final Thoughts
+
+> Why fight with YAML files and endless docker ps when you can just click around like you're playing a city builder game?
+
+Portainer is here to help you manage containers without needing to remember every flag, so you can spend more time actually building cool things — or watching Netflix while pretending to "work on the server".
+
+#### 🎉 Happy Container-ing!
+
+---
