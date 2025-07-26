@@ -1,0 +1,19 @@
+---
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VERSION=docker
+    ports:
+      - "32400:32400"       # Plex Web UI
+      - "3005:3005"         # Plex Companion
+    volumes:
+      - D:\docker\plex\config:/config
+      - D:\Movies & Series\Series:/media/series
+      - D:\Movies & Series\Movies:/media/movies
+      - D:\Music:/media/music
+    restart: unless-stopped

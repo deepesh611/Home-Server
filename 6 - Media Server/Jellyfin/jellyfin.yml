@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    ports:
+      - "8096:8096"                         # HTTP (Host-Port : Container-Port)
+    volumes:
+      - D:\docker\jellyfin\config:/config
+      - D:\docker\jellyfin\cache:/cache
+      - D:/Movies & Series:/media           # replace with your actual media path
+    restart: unless-stopped

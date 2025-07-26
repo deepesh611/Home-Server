@@ -1,0 +1,91 @@
+---
+title: 🎬 Plex — Stream Like a Pro
+description: Netflix? Pfft. Build your own streaming empire with Plex and flex on your friends.
+---
+
+import { Code } from '@astrojs/starlight/components';
+import { Aside } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+
+Tired of hopping between 5 different streaming platforms just to find *that one movie*?
+**Plex** turns your device into a media server — stream what you own, when you want.
+
+---
+
+## 🧠 TL;DR
+
+- Central hub for all your movies, shows, music, and photos
+- Remote streaming, metadata magic, and mobile apps galore
+- More polished than Jellyfin, but partially proprietary
+- Optional paid features via Plex Pass (but you don’t *have* to)
+
+---
+
+## 🐳 Docker (Because containers are cool)
+
+Here’s a slick `docker-compose.yml` setup for Plex — run it, tweak it, rule your media world:
+
+```yaml
+version: '3.8'
+
+services:
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM= # Optional: claim token from https://www.plex.tv/claim
+    volumes:
+      - /path/to/config:/config
+      - /path/to/media:/data
+    restart: unless-stopped
+```
+
+<Aside>
+    🎟️ <strong>PLEX_CLAIM</strong> is like a VIP pass. Get it from [plex.tv/claim](https://plex.tv/claim) — if you want to auto-sign into your account.
+</Aside>
+<Aside type="tip">
+    📁 Replace `/path/to/...` with actual folders or you’ll be staring at an empty library wondering where all your anime went.
+</Aside>
+
+## 🚪 Access Plex
+
+Once it’s up and running:
+- Visit:
+    ```bash
+      http://your-device-ip:32400/web
+    ```
+- Log in with your Plex account
+- Add your media libraries (TV, Movies, etc.)
+- Customize away
+
+## 📱 Supported Clients (Basically everything)
+
+You can Plex on:
+- Web browser
+- Android / iOS apps
+- Apple TV / Fire TV / Roku
+- Smart TVs
+- Gaming consoles
+- Fridge with a screen? Don’t tempt me
+
+## 🧯 Security Stuff (Yes, you need this)
+
+Planning to expose Plex to the internet? Do this:
+- Set up a reverse proxy (NGINX + HTTPS FTW)
+- Use strong passwords (Plex isn’t your diary, but still…)
+- Restrict remote access or use a VPN if you're privacy-conscious
+
+## 🛠️ Extras & Add-ons
+
+Want to spice up Plex with cool features?
+- Try Tautulli for monitoring who’s watching what (yes, even yourself)
+- Add Sub-Zero for better subtitles
+- Use Bazarr + Sonarr + Radarr to automate downloads and library management
+
+<Aside type="note">
+    🧩 Plex is modular — the more you add, the more it feels like your own streaming empire.
+</Aside>

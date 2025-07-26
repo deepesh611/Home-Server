@@ -65,6 +65,14 @@ export default defineConfig({
               ]
           },
           {
+              label: "Media Server",
+              collapsed: true,
+              items: [
+                  {label: "Jellyfin", slug: "guides/media-server/jellyfin"},
+                  {label: " Plex", slug: "guides/media-server/plex"},
+              ]
+          },
+          {
               label: 'Reference',
               collapsed: true,
               autogenerate: { directory: 'reference' },

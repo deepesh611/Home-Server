@@ -1,0 +1,83 @@
+---
+title: 🍿 Jellyfin — Entertainment Empire
+description: Your personal Netflix — but cooler, open source, and no monthly guilt.
+---
+
+import { Code } from '@astrojs/starlight/components';
+import { Aside } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+
+
+Tired of algorithmic recommendations for shows you *pretended* to like?<br/>
+**Jellyfin** lets you stream your own media — **no ads, no trackers, no judgment.**
+
+---
+
+## 🧠 TL;DR
+
+- It's like Plex... but without the subscription emails.
+- Organize movies, shows, anime, music — heck, your home videos from 2004.
+- Host it yourself. Control everything. Never buffer again (unless your Wi-Fi sucks).
+
+## 🐳 Docker (Because you like it neat)
+
+By now, you're probably a Docker + Portainer ninja 🥷
+So here’s your trusty docker-compose.yml for Jellyfin:
+```yaml
+    version: '3.8'
+
+    services:
+    jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    network_mode: host
+    volumes:
+    - /path/to/config:/config
+    - /path/to/cache:/cache
+    - /path/to/media:/media
+    restart: unless-stopped
+```
+
+<Aside>
+    📦 Replace /path/to/... with actual directories or Portainer will cry.
+</Aside>
+
+## 🧰 Setup Guide (For native install — the “bare metal” way)
+<Steps>
+    1. Crack open a terminal. Take a deep breath. You're about to self-host Hollywood.
+    2. Add the official Jellyfin repo:
+        <Code code="curl -fsSL https://repo.jellyfin.org/install-debuntu.sh | bash" lang="bash" />
+    3. Update your package index and install:
+        <Code code="sudo apt update && sudo apt install jellyfin" lang="bash" />
+    4. Start Jellyfin and enable it to auto-start:
+        <Code code="sudo systemctl enable --now jellyfin" lang="bash" />
+    5. Access the dashboard in your browser:
+        <Code code="http://your-device-ip:8096" lang="bash" />
+</Steps>
+
+<Aside type="tip">
+    🧪 Bonus Tip: Got a spare SSD? Plug it in. Mount it.
+    Jellyfin + SSD = smoother streams than your ex’s Netflix password ever gave you.
+</Aside>
+
+## 🎨 Lookin' Good
+
+Want to customize how Jellyfin looks?
+    - Go to: Dashboard → Display
+    - Choose themes: Light, Dark, Vaporwave, or "Did I just enter the Matrix?"
+    - Add backdrops, posters, fanart — Jellyfin loves drama.
+
+## 📱 Where Can I Watch?
+    - Web browser (localhost or LAN)
+    - Android & iOS apps
+    - Android TV / Fire TV / Roku
+    - LG / Samsung Smart TVs
+    - Steam Deck? Yup, that too.
+    - If your toaster can run a browser, Jellyfin probably works on it.
+
+## 🔐 Lock It Down (Security Tips)
+
+    If you're opening Jellyfin to the world:
+    - Use an NGINX reverse proxy with HTTPS (Let’s Encrypt is free!)
+    - Enforce strong passwords (no “1234”... please)
+    - Disable public access unless you're cool with strangers watching your home movies
